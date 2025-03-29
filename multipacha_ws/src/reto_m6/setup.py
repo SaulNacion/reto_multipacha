@@ -20,6 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'reto_topic_pub = reto_m6.reto_topic_pub:main',
+            'reto_topic_sub = reto_m6.reto_topic_sub:main',
         ],
     },
 )

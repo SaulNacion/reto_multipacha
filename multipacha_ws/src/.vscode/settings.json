@@ -1,0 +1,14 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/saul/ros2_ws/build/my_py_pkg",
+        "/home/saul/ros2_ws/install/my_py_pkg/lib/python3.12/site-packages",
+        "/home/saul/reto/multipacha_ws/install/reto_m6/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/saul/ros2_ws/build/my_py_pkg",
+        "/home/saul/ros2_ws/install/my_py_pkg/lib/python3.12/site-packages",
+        "/home/saul/reto/multipacha_ws/install/reto_m6/lib/python3.12/site-packages",
+        "/opt/ros/jazzy/lib/python3.12/site-packages"
+    ]
+}

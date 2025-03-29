@@ -1,0 +1,17 @@
+[1.885s] Invoking command in '/home/saul/reto/multipacha_ws/build/reto_m6': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/saul/reto/multipacha_ws/build/reto_m6/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/saul/reto/multipacha_ws/install/reto_m6/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/saul/reto/multipacha_ws/build/reto_m6/build --no-deps symlink_data --force
+[2.618s] running develop
+[3.046s] running egg_info
+[3.086s] writing reto_m6.egg-info/PKG-INFO
+[3.086s] writing dependency_links to reto_m6.egg-info/dependency_links.txt
+[3.087s] writing requirements to reto_m6.egg-info/requires.txt
+[3.087s] writing top-level names to reto_m6.egg-info/top_level.txt
+[3.167s] reading manifest file 'reto_m6.egg-info/SOURCES.txt'
+[3.168s] writing manifest file 'reto_m6.egg-info/SOURCES.txt'
+[3.209s] running build_ext
+[3.210s] Creating /home/saul/reto/multipacha_ws/install/reto_m6/lib/python3.12/site-packages/reto-m6.egg-link (link to .)
+[3.211s] 
+[3.211s] Installed /home/saul/reto/multipacha_ws/build/reto_m6
+[3.211s] running symlink_data
+[3.211s] symbolically linking /home/saul/reto/multipacha_ws/build/reto_m6/resource/reto_m6 -> /home/saul/reto/multipacha_ws/install/reto_m6/share/ament_index/resource_index/packages
+[3.212s] symbolically linking /home/saul/reto/multipacha_ws/build/reto_m6/package.xml -> /home/saul/reto/multipacha_ws/install/reto_m6/share/reto_m6
+[3.282s] Invoked command in '/home/saul/reto/multipacha_ws/build/reto_m6' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/saul/reto/multipacha_ws/build/reto_m6/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/saul/reto/multipacha_ws/install/reto_m6/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/saul/reto/multipacha_ws/build/reto_m6/build --no-deps symlink_data --force

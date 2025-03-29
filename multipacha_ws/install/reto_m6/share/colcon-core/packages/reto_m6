@@ -1,1 +1,1 @@
-rclpy:rviz2
+rclpy:rviz2:std_msgs.msg
