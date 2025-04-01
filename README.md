@@ -38,7 +38,7 @@ Y se crean los directorios **launch** y **urdf**
 mkdir launch
 mkdir urdf
 ```
-## Creación y comunicación entre *nodes* mediante *topics*
+### Creación y comunicación entre *nodes* mediante *topics*
 Luego de generar el *workspace*, y de crear el paquete en *Python* **reto_m6**, se crea un archivo **.py** en la dirección **reto_m6/reto_m6/** llamado *reto_topic_pub*.
   ```bash
 touch reto_topic_pub.py
@@ -190,4 +190,153 @@ ros2 run reto_m6 reto_topic_sub
 [INFO] [1743258654.233694919] [message_subscriber]: Message Subscriber Node has been started.
 ```
 ![nc](images/nodes_communication.png)
+
+### Creación y vizualicaión de archivo URDF
+En la carpeta **/urdf** que se creo anteriormente se escribe un archivo **reto_robot.urdf**.
+```bash
+cd urdf/
+touch reto_robot.urdf
+code reto_robot.urdf
+```
+En este caso se piden como mínimo tres *links* y una juntura *continous* o *revolute*, lo que se presentará será una base con tres eslabones todos unidos mediante una juntura de revolución solo que los ultimos dos tendran ejes de giro diferentes.*(Los comentarios fueron generados por Copilot)*.
+```xml
+<?xml version="1.0"?>
+<!-- Declaración XML indicando la versión utilizada. -->
+
+<robot name="reto_robot">
+<!-- Define el inicio del modelo del robot con el nombre "reto_robot". -->
+
+    <!-- Base -->
+    <link name="base_link">
+        <!-- Define un enlace llamado "base_link" que representa la base del robot. -->
+        <visual>
+            <!-- Sección visual del enlace, define cómo se verá el enlace. -->
+            <geometry>
+                <!-- Define la geometría del enlace. -->
+                <box size="0.5 0.5 0.2"/>
+                <!-- Especifica que la geometría es una caja con dimensiones 0.5x0.5x0.2. -->
+            </geometry>
+            <material name="blue">
+                <!-- Define el material del enlace con el nombre "blue". -->
+                <color rgba="0 0 1 1"/>
+                <!-- Especifica el color azul con opacidad completa (RGBA: 0, 0, 1, 1). -->
+            </material>
+        </visual>
+    </link>
+    
+    <!-- Eslabón 0-->
+    <link name="arm_link_0">
+        <!-- Define un enlace llamado "arm_link_0", que representa el primer eslabón del brazo. -->
+        <visual>
+            <!-- Sección visual del enlace. -->
+            <geometry>
+                <!-- Define la geometría del enlace. -->
+                <cylinder radius="0.05" length="0.5"/>
+                <!-- Especifica que la geometría es un cilindro con radio 0.05 y longitud 0.5. -->
+            </geometry>
+            <material name="red">
+                <!-- Define el material del enlace con el nombre "red". -->
+                <color rgba="1 0 0 1"/>
+                <!-- Especifica el color rojo con opacidad completa (RGBA: 1, 0, 0, 1). -->
+            </material>
+        </visual>
+    </link>
+    
+    <!-- Eslabón 1-->
+    <link name="arm_link_1">
+        <!-- Define un enlace llamado "arm_link_1", que representa el segundo eslabón del brazo. -->
+        <visual>
+            <geometry>
+                <cylinder radius="0.05" length="0.5"/>
+                <!-- Geometría similar al eslabón anterior: cilindro con radio 0.05 y longitud 0.5. -->
+            </geometry>
+            <material name="red">
+                <color rgba="1 0 0 1"/>
+                <!-- Mismo material y color que el eslabón anterior. -->
+            </material>
+        </visual>
+    </link>
+
+    <!-- Eslabón 2 -->
+    <link name="arm_link_2">
+        <!-- Define un enlace llamado "arm_link_2", que representa el tercer eslabón del brazo. -->
+        <visual>
+            <geometry>
+                <cylinder radius="0.05" length="0.5"/>
+                <!-- Geometría similar a los eslabones anteriores. -->
+            </geometry>
+            <material name="red">
+                <color rgba="1 0 0 1"/>
+                <!-- Mismo material y color que los eslabones anteriores. -->
+            </material>
+        </visual>
+    </link>
+
+    <!-- Junta de Revolución 1-->
+    <joint name="joint1" type="revolute">
+        <!-- Define una junta de tipo "revolute" (revolución) llamada "joint1". -->
+        <parent link="base_link"/>
+        <!-- Especifica que el enlace padre de esta junta es "base_link". -->
+        <child link="arm_link_0"/>
+        <!-- Especifica que el enlace hijo de esta junta es "arm_link_0". -->
+        <origin xyz="0 0 0.1" rpy="0 0 0"/>
+        <!-- Define la posición (xyz) y orientación (rpy) de la junta respecto al enlace padre. -->
+        <axis xyz="0 0 1"/>
+        <!-- Define el eje de rotación de la junta (en este caso, el eje Z). -->
+        <limit effort="10.0" lower="-1.57" upper="1.57" velocity="1.0"/>
+        <!-- Establece los límites de la junta: esfuerzo máximo, ángulos mínimo y máximo, y velocidad máxima. -->
+    </joint>
+    
+    <!-- Junta de Revolución 2-->
+    <joint name="joint2" type="revolute">
+        <!-- Define una junta de tipo "revolute" llamada "joint2". -->
+        <parent link="arm_link_0"/>
+        <!-- El enlace padre es "arm_link_0". -->
+        <child link="arm_link_1"/>
+        <!-- El enlace hijo es "arm_link_1". -->
+        <origin xyz="0 0 0.25" rpy="0 0 0"/>
+        <!-- Define la posición y orientación de la junta respecto al enlace padre. -->
+        <axis xyz="1 0 0"/>
+        <!-- Define el eje de rotación de la junta (en este caso, el eje X). -->
+        <limit effort="10.0" lower="-1.57" upper="1.57" velocity="1.0"/>
+        <!-- Establece los límites de la junta. -->
+    </joint>
+    
+    <!-- Junta de Revolución 3 -->
+    <joint name="joint3" type="revolute">
+        <!-- Define una junta de tipo "revolute" llamada "joint3". -->
+        <parent link="arm_link_1"/>
+        <!-- El enlace padre es "arm_link_1". -->
+        <child link="arm_link_2"/>
+        <!-- El enlace hijo es "arm_link_2". -->
+        <origin xyz="0 0 0.25" rpy="0 0 0"/>
+        <!-- Define la posición y orientación de la junta respecto al enlace padre. -->
+        <axis xyz="0 1 0"/>
+        <!-- Define el eje de rotación de la junta (en este caso, el eje Y). -->
+        <limit effort="10.0" lower="-1.57" upper="1.57" velocity="1.0"/>
+        <!-- Establece los límites de la junta. -->
+    </joint>
+</robot>
+<!-- Cierra la definición del robot. -->
+```
+Luego verificamos si el archivo es correcto.
+```bash
+check_urdf ~/reto/multipacha_ws/urdf/reto_robot.urdf
+```
+A lo que obtenemos:
+```bash
+robot name is: reto_robot
+---------- Successfully Parsed XML ---------------
+root Link: base_link has 1 child(ren)
+    child(1):  arm_link_0
+        child(1):  arm_link_1
+            child(1):  arm_link_2
+```
+Finalmente para la visualización del modelo en 3D se hará uso de Rviz, se usará un archivo *launch* predeterminado, pero más adelante se creará uno propio.
+```bash
+ ros2 launch urdf_tutorial display.launch.py model:=$HOME/reto/multipacha_ws/urdf/reto_robot.urdf
+ ```
+ ![rr](images/rviz_reto_robot.png)
+
+
 
